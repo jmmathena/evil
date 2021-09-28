@@ -476,18 +476,7 @@ Based on `evil-enclose-ace-jump-for-motion'."
 
 ;; visual-line-mode integration
 (when evil-respect-visual-line-mode
-  (evil-define-command evil-digit-argument-or-evil-beginning-of-visual-line ()
-    :digit-argument-redirection evil-beginning-of-visual-line
-    :keep-visual t
-    :repeat nil
-    (interactive)
-    (cond
-     (current-prefix-arg
-      (setq this-command #'digit-argument)
-      (call-interactively #'digit-argument))
-     (t
-      (setq this-command 'evil-beginning-of-visual-line)
-      (call-interactively 'evil-beginning-of-visual-line))))
+  (evil-redirect-digit-argument 'evil-beginning-of-visual-line)
 
   (evil-define-minor-mode-key 'motion 'visual-line-mode
     "j" 'evil-next-visual-line
